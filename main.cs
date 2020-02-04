@@ -2,8 +2,9 @@
 // Copyright (c) 2020 All Rights Reserved
 // </copyright>
 // <author>Marcus Medina</author>
-// <date>2020-02-04 >14:14</date>
+// <date>2020-02-04 14:14</date>
 // <summary>Class for generating CSV with dates</summary>
+
 using System;
 
 public class Program
