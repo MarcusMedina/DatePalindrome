@@ -13,7 +13,7 @@ public class Program
 	public static void Main()
 	{
 		Console.WriteLine("Start date, Start time, End date, End time, subject, detail,All Day Event");
-		int year = 2020;
+		int year = DateTime.Now.Year;
 		for (int ycount = 0; ycount < 6; ycount++)
 		{
 			for (int month = 1; month < 13; month++)
