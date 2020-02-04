@@ -25,17 +25,17 @@ public class Program
 				for (int day = 1; day <= MaxDays; day++)
 				{
 					CheckPlaindromeDate(ycount + year, month, day, 0, 0, 0, "yyyy-MM-dd", "Palindrome whole day");
-					CheckPlaindromeDate(ycount + year, month, day, 0, 0, 0, "yy-MM-dd", "Palindrome whole day without decennium");
+					CheckPlaindromeDate(ycount + year, month, day, 0, 0, 0, "yy-MM-dd", "Palindrome whole day without decade");
 					for (int hour = 0; hour < 24; hour++)
 					{
 						for (int minute = 0; minute < 60; minute++)
 						{
 							CheckPlaindromeDate(ycount + year, month, day, hour, minute, 0, "yyyy-MM-dd hh:mm", "Palindrome day with time");
-							CheckPlaindromeDate(ycount + year, month, day, hour, minute, 0, "yy-MM-dd hh:mm", "Palindrome day with time without decennium");
+							CheckPlaindromeDate(ycount + year, month, day, hour, minute, 0, "yy-MM-dd hh:mm", "Palindrome day with time without decade");
 						}
 
 						CheckPlaindromeDate(ycount + year, month, day, hour, 0, 0, "yyyy-MM-dd hh:", "Palindrome day with whole hours");
-						CheckPlaindromeDate(ycount + year, month, day, hour, 0, 0, "yy-MM-dd hh:", "Palindrome day with whole hours without decennium");
+						CheckPlaindromeDate(ycount + year, month, day, hour, 0, 0, "yy-MM-dd hh:", "Palindrome day with whole hours without decade");
 					}
 				}
 			}
