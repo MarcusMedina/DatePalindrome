@@ -4,25 +4,13 @@
     {
         static void Main()
         {
-            var sync = new GitSync
-            {
-                MainGit = "https://kvackstudio@dev.azure.com/kvackstudio/kvackstudio/_git/kvackstudio",
-                MainBranch = "Develop",
-                MirrorGit = "https://gitlab.com/kvack/kvackstudio.git",
-                MirrorBranch = "develop",
-                Folder = "GitSync_Kvack",
-                Verbose = true,
-                PauseAtEnd = true,
-                PruneMirrorGit = true,
-                Quiet = false,
-                ShowBatchInfo = true,
-                OnlyToPrivate = false
-            };
-            sync.Init();
-            sync.QueueSync();
+            GitSync.Init();
+            GitSync.PauseAtEnd = true;
 
+            SyncKvackStudioWithGitlab();
             QuickSyncGithub("TopWinPrio");
             QuickSyncGithub("TypedMath");
+            QuickSyncGithub("DatePalindrome");
 
             //QuickSyncVSTS("CodeGenerator");
             //QuickSyncVSTS("CodeGenerator2");
@@ -31,7 +19,27 @@
             //QuickSyncVSTS("PeopleClassificator");
             //QuickSyncVSTS("ClassRefAndClone");
 
-            sync.DoSync();
+            GitSync.DoSync();
+        }
+
+        private static void SyncKvackStudioWithGitlab()
+        {
+            var sync = new GitSync
+            {
+                MainGit = "https://kvackstudio@dev.azure.com/kvackstudio/kvackstudio/_git/kvackstudio",
+                MainBranch = "develop",
+                MainCommitBranch = "Develop_merged_with_GitLab",
+                MirrorGit = "https://gitlab.com/kvack/kvackstudio.git",
+                Folder = "GitSync_Kvack",
+                Verbose = true,
+                PruneMirrorGit = true,
+                Quiet = false,
+                ShowBatchInfo = true,
+                OnlyToPrivate = false,
+                DontPushWithMirror = true,
+            };
+            sync.QueueSync();
+
         }
 
         private static void QuickSyncGithub(string project, string branch = "master", bool onlyToPrivate = false)
@@ -39,16 +47,15 @@
             var sync = new GitSync
             {
                 MainBranch = branch,
-                MirrorBranch = branch,
                 MainGit = "https://marcusmedina.visualstudio.com/" + project + "/_git/" + project,
                 MirrorGit = "https://github.com/MarcusMedina/" + project + ".git/",
                 Folder = "GitSync_" + project,
                 Verbose = true,
-                PauseAtEnd = false,
                 PruneMirrorGit = false,
                 Quiet = false,
                 ShowBatchInfo = true,
-                OnlyToPrivate = onlyToPrivate
+                OnlyToPrivate = onlyToPrivate,
+                DontPushWithMirror = false
             };
             sync.QueueSync();
         }
